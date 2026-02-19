@@ -1,4 +1,4 @@
-"""Sensor platform for the Dongle Connect P1 Meter integration."""
+"""Sensor platform for the EARN-E P1 Meter integration."""
 
 from __future__ import annotations
 
@@ -13,9 +13,9 @@ from homeassistant.components.sensor import (
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from . import P1MeterConfigEntry
+from . import EarnEP1ConfigEntry
 from .const import DOMAIN, SENSOR_FIELDS, P1SensorFieldDescriptor
-from .coordinator import P1MeterCoordinator
+from .coordinator import EarnEP1Coordinator
 
 SENSOR_DESCRIPTIONS: tuple[SensorEntityDescription, ...] = tuple(
     SensorEntityDescription(
@@ -34,24 +34,24 @@ _FIELD_BY_KEY: dict[str, P1SensorFieldDescriptor] = {f.key: f for f in SENSOR_FI
 
 async def async_setup_entry(
     hass: Any,
-    entry: P1MeterConfigEntry,
+    entry: EarnEP1ConfigEntry,
     async_add_entities: Any,
 ) -> None:
-    """Set up P1 Meter sensor entities."""
+    """Set up EARN-E P1 sensor entities."""
     coordinator = entry.runtime_data
     async_add_entities(
-        P1MeterSensor(coordinator, description) for description in SENSOR_DESCRIPTIONS
+        EarnEP1Sensor(coordinator, description) for description in SENSOR_DESCRIPTIONS
     )
 
 
-class P1MeterSensor(CoordinatorEntity[P1MeterCoordinator], SensorEntity):
-    """Representation of a P1 Meter sensor."""
+class EarnEP1Sensor(CoordinatorEntity[EarnEP1Coordinator], SensorEntity):
+    """Representation of an EARN-E P1 sensor."""
 
     _attr_has_entity_name = True
 
     def __init__(
         self,
-        coordinator: P1MeterCoordinator,
+        coordinator: EarnEP1Coordinator,
         description: SensorEntityDescription,
     ) -> None:
         """Initialize the sensor."""
@@ -65,8 +65,8 @@ class P1MeterSensor(CoordinatorEntity[P1MeterCoordinator], SensorEntity):
         """Return device information."""
         return DeviceInfo(
             identifiers={(DOMAIN, self.coordinator.serial or self.coordinator.host)},
-            name="P1 Meter",
-            manufacturer="Dongle Connect",
+            name="EARN-E P1 Meter",
+            manufacturer="EARN-E",
             model=self.coordinator.model,
             sw_version=self.coordinator.sw_version,
         )

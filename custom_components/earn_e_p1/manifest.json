@@ -1,9 +1,9 @@
 {
-  "domain": "p1_meter",
-  "name": "Dongle Connect P1 Meter",
+  "domain": "earn_e_p1",
+  "name": "EARN-E P1 Meter",
   "codeowners": [],
   "config_flow": true,
-  "documentation": "https://github.com/Byrt/HA-Dongle-Connect-P1-Meter",
+  "documentation": "https://github.com/Miggets7/HA-Earn-E-P1-Meter-Add-On",
   "integration_type": "device",
   "iot_class": "local_push",
   "requirements": [],

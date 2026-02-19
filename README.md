@@ -1,6 +1,6 @@
-# Dongle Connect P1 Meter
+# EARN-E P1 Meter
 
-Home Assistant custom integration for the Dongle Connect P1 Meter. The dongle broadcasts real-time energy data via UDP on the local network, and this integration exposes it as sensor entities in Home Assistant.
+Home Assistant custom integration for the [EARN-E energy monitor](https://earn-e.com/product/energiemonitor/). The EARN-E reads your smart meter's P1 port and broadcasts real-time energy data via UDP on the local network. This integration listens for those broadcasts and exposes them as sensor entities in Home Assistant.
 
 ## Features
 
@@ -31,18 +31,18 @@ Home Assistant custom integration for the Dongle Connect P1 Meter. The dongle br
 
 1. In HACS, go to **Integrations → ⋮ → Custom repositories**
 2. Add this repository URL with category **Integration**
-3. Search for "Dongle Connect P1 Meter" and click **Download**
+3. Search for "EARN-E P1 Meter" and click **Download**
 4. Restart Home Assistant
 
 ### Manual
 
-1. Copy `custom_components/p1_meter/` to your Home Assistant `config/custom_components/` directory
+1. Copy `custom_components/earn_e_p1/` to your Home Assistant `config/custom_components/` directory
 2. Restart Home Assistant
 
 ## Setup
 
 1. Go to **Settings → Devices & Services → Add Integration**
-2. Search for "Dongle Connect P1 Meter"
-3. Enter the IP address of your dongle
+2. Search for "EARN-E P1 Meter"
+3. Enter the IP address of your EARN-E energy monitor
 
 The integration listens for UDP broadcasts on port 16121. Sensors will populate once the first packets arrive.

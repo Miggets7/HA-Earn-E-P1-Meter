@@ -1,4 +1,4 @@
-"""DataUpdateCoordinator and UDP protocol for the Dongle Connect P1 Meter."""
+"""DataUpdateCoordinator and UDP protocol for the EARN-E P1 Meter."""
 
 from __future__ import annotations
 
@@ -15,10 +15,10 @@ from .const import DEFAULT_PORT, DOMAIN
 _LOGGER = logging.getLogger(__name__)
 
 
-class P1MeterUDPProtocol(asyncio.DatagramProtocol):
-    """UDP protocol that receives P1 meter JSON packets."""
+class EarnEP1UDPProtocol(asyncio.DatagramProtocol):
+    """UDP protocol that receives EARN-E P1 meter JSON packets."""
 
-    def __init__(self, coordinator: P1MeterCoordinator, host: str) -> None:
+    def __init__(self, coordinator: EarnEP1Coordinator, host: str) -> None:
         """Initialize the protocol."""
         self.coordinator = coordinator
         self.host = host
@@ -58,8 +58,8 @@ class P1MeterUDPProtocol(asyncio.DatagramProtocol):
             _LOGGER.error("UDP connection lost: %s", exc)
 
 
-class P1MeterCoordinator(DataUpdateCoordinator[dict[str, Any]]):
-    """Coordinator for the Dongle Connect P1 Meter."""
+class EarnEP1Coordinator(DataUpdateCoordinator[dict[str, Any]]):
+    """Coordinator for the EARN-E P1 Meter."""
 
     def __init__(self, hass: HomeAssistant, host: str) -> None:
         """Initialize the coordinator."""
@@ -79,16 +79,16 @@ class P1MeterCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         """Start listening for UDP packets."""
         loop = self.hass.loop
         transport, _ = await loop.create_datagram_endpoint(
-            lambda: P1MeterUDPProtocol(self, self.host),
+            lambda: EarnEP1UDPProtocol(self, self.host),
             local_addr=("0.0.0.0", DEFAULT_PORT),
             allow_broadcast=True,
         )
         self._transport = transport
-        _LOGGER.debug("P1 Meter UDP listener started on port %s", DEFAULT_PORT)
+        _LOGGER.debug("EARN-E P1 UDP listener started on port %s", DEFAULT_PORT)
 
     async def async_stop(self) -> None:
         """Stop listening for UDP packets."""
         if self._transport:
             self._transport.close()
             self._transport = None
-            _LOGGER.debug("P1 Meter UDP listener stopped")
+            _LOGGER.debug("EARN-E P1 UDP listener stopped")

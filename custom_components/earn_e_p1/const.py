@@ -1,4 +1,4 @@
-"""Constants for the Dongle Connect P1 Meter integration."""
+"""Constants for the EARN-E P1 Meter integration."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ from homeassistant.const import (
     SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
 )
 
-DOMAIN = "p1_meter"
+DOMAIN = "earn_e_p1"
 DEFAULT_PORT = 16121
 
 

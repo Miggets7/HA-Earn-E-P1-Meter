@@ -1,4 +1,4 @@
-"""Config flow for the Dongle Connect P1 Meter integration."""
+"""Config flow for the EARN-E P1 Meter integration."""
 
 from __future__ import annotations
 
@@ -18,8 +18,8 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
 )
 
 
-class P1MeterConfigFlow(ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for Dongle Connect P1 Meter."""
+class EarnEP1ConfigFlow(ConfigFlow, domain=DOMAIN):
+    """Handle a config flow for EARN-E P1 Meter."""
 
     VERSION = 1
 
@@ -37,7 +37,7 @@ class P1MeterConfigFlow(ConfigFlow, domain=DOMAIN):
         self._abort_if_unique_id_configured()
 
         return self.async_create_entry(
-            title=f"P1 Meter ({user_input[CONF_HOST]})",
+            title=f"EARN-E P1 ({user_input[CONF_HOST]})",
             data=user_input,
         )
 

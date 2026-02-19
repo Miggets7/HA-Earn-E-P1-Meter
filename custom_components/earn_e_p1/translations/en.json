@@ -2,22 +2,22 @@
   "config": {
     "step": {
       "user": {
-        "title": "Connect to P1 Meter",
-        "description": "Enter the IP address of your Dongle Connect P1 Meter.",
+        "title": "Connect to EARN-E P1 Meter",
+        "description": "Enter the IP address of your EARN-E energy monitor.",
         "data": {
           "host": "IP Address"
         }
       },
       "reconfigure": {
-        "title": "Reconfigure P1 Meter",
-        "description": "Update the IP address of your Dongle Connect P1 Meter.",
+        "title": "Reconfigure EARN-E P1 Meter",
+        "description": "Update the IP address of your EARN-E energy monitor.",
         "data": {
           "host": "IP Address"
         }
       }
     },
     "abort": {
-      "already_configured": "This P1 Meter is already configured.",
+      "already_configured": "This EARN-E P1 Meter is already configured.",
       "reconfigure_successful": "Reconfiguration successful."
     }
   },
