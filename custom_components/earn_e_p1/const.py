@@ -118,7 +118,7 @@ SENSOR_FIELDS: tuple[P1SensorFieldDescriptor, ...] = (
     ),
     P1SensorFieldDescriptor(
         key="wifi_rssi",
-        json_key="wifi_rssi",
+        json_key="wifiRSSI",
         translation_key="wifi_rssi",
         native_unit_of_measurement=SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
         device_class=SensorDeviceClass.SIGNAL_STRENGTH,

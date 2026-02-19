@@ -40,8 +40,8 @@ class EarnEP1UDPProtocol(asyncio.DatagramProtocol):
             self.coordinator.serial = payload["serial"]
         if "model" in payload:
             self.coordinator.model = payload["model"]
-        if "sw_version" in payload:
-            self.coordinator.sw_version = payload["sw_version"]
+        if "swVersion" in payload:
+            self.coordinator.sw_version = str(payload["swVersion"])
 
         # Merge new data into existing coordinator data
         merged = dict(self.coordinator.data or {})
