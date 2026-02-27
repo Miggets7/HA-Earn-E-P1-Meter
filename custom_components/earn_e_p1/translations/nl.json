@@ -6,6 +6,9 @@
         "description": "Er is geen apparaat gevonden. Voer het IP-adres van je EARN-E energiemonitor handmatig in.",
         "data": {
           "host": "IP-adres"
+        },
+        "data_description": {
+          "host": "Het lokale IP-adres van je EARN-E P1 Meter (bijv. 192.168.1.100)."
         }
       },
       "discovery_confirm": {
@@ -17,8 +20,15 @@
         "description": "Werk het IP-adres van je EARN-E energiemonitor bij.",
         "data": {
           "host": "IP-adres"
+        },
+        "data_description": {
+          "host": "Het nieuwe lokale IP-adres van je EARN-E P1 Meter."
         }
       }
+    },
+    "error": {
+      "cannot_connect": "Kan geen verbinding maken — geen gegevens ontvangen van het apparaat. Controleer het IP-adres en of de EARN-E is ingeschakeld.",
+      "unknown": "Er is een onverwachte fout opgetreden."
     },
     "abort": {
       "already_configured": "Deze EARN-E P1 Meter is al geconfigureerd.",

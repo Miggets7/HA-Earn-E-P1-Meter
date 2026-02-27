@@ -10,12 +10,11 @@ from homeassistant.components.sensor import (
     SensorEntityDescription,
     SensorStateClass,
 )
-from homeassistant.helpers.device_registry import DeviceInfo
-from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from . import EarnEP1ConfigEntry
 from .const import DOMAIN, SENSOR_FIELDS, P1SensorFieldDescriptor
 from .coordinator import EarnEP1Coordinator
+from .entity import EarnEP1Entity
 
 SENSOR_DESCRIPTIONS: tuple[SensorEntityDescription, ...] = tuple(
     SensorEntityDescription(
@@ -44,10 +43,8 @@ async def async_setup_entry(
     )
 
 
-class EarnEP1Sensor(CoordinatorEntity[EarnEP1Coordinator], SensorEntity):
+class EarnEP1Sensor(EarnEP1Entity, SensorEntity):
     """Representation of an EARN-E P1 sensor."""
-
-    _attr_has_entity_name = True
 
     def __init__(
         self,
@@ -58,17 +55,10 @@ class EarnEP1Sensor(CoordinatorEntity[EarnEP1Coordinator], SensorEntity):
         super().__init__(coordinator)
         self.entity_description = description
         self._field = _FIELD_BY_KEY[description.key]
-        self._attr_unique_id = f"{coordinator.host}_{description.key}"
-
-    @property
-    def device_info(self) -> DeviceInfo:
-        """Return device information."""
-        return DeviceInfo(
-            identifiers={(DOMAIN, self.coordinator.serial or self.coordinator.host)},
-            name="EARN-E P1 Meter",
-            manufacturer="EARN-E",
-            model=self.coordinator.model,
-            sw_version=self.coordinator.sw_version,
+        self._attr_unique_id = (
+            f"{coordinator.serial}_{description.key}"
+            if coordinator.serial
+            else f"{coordinator.host}_{description.key}"
         )
 
     @property

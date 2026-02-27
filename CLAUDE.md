@@ -15,20 +15,41 @@ Home Assistant custom integration for the EARN-E energy monitor. The device read
 
 ## Development
 
-There is no build system, test suite, or linter configured. The integration is pure Python with no compilation step. To test, install into a Home Assistant development environment by copying `custom_components/earn_e_p1/` into the HA config directory.
+```bash
+# Install test dependencies
+pip install -r requirements_test.txt
+
+# Run tests
+pytest
+
+# Run tests with coverage
+pytest --cov=custom_components.earn_e_p1 --cov-report=term-missing
+```
+
+The integration is pure Python with no compilation step. For manual testing, install into a Home Assistant development environment by copying `custom_components/earn_e_p1/` into the HA config directory.
 
 ## Architecture
 
 ```
 custom_components/earn_e_p1/
 ├── __init__.py       # Entry point: async_setup_entry / async_unload_entry
-├── config_flow.py    # Config flow with manual IP entry + UDP auto-discovery
+├── config_flow.py    # Config flow with manual IP entry + UDP auto-discovery + validation
 ├── const.py          # Domain, port, P1SensorFieldDescriptor dataclass, SENSOR_FIELDS tuple
 ├── coordinator.py    # DataUpdateCoordinator + asyncio DatagramProtocol (UDP listener)
+├── entity.py         # Base entity class with device_info (common-modules pattern)
 ├── sensor.py         # SensorEntity subclass, creates entities from SENSOR_FIELDS descriptors
 ├── manifest.json     # Integration metadata
 ├── strings.json      # UI strings (config flow steps, entity names)
-└── translations/en.json
+└── translations/
+    ├── en.json
+    └── nl.json
+
+tests/
+├── __init__.py
+├── conftest.py         # Shared fixtures
+├── test_config_flow.py # Config flow tests (100% coverage target)
+├── test_init.py        # Setup/unload tests
+└── test_sensor.py      # Sensor entity tests
 ```
 
 **Data flow:** Device UDP broadcast → `EarnEP1UDPProtocol` (port 16121) → `EarnEP1Coordinator` merges JSON payload → `EarnEP1Sensor` entities read from coordinator data.

@@ -55,6 +55,12 @@ Home Assistant custom integration for the [EARN-E energy monitor](https://earn-e
 
 Sensors will populate once the first data packets arrive.
 
+### Removal
+
+1. Go to **Settings → Devices & Services**
+2. Click on the **EARN-E P1 Meter** integration
+3. Click the three-dot menu (⋮) and select **Delete**
+
 ---
 
 ## Nederlands
@@ -107,3 +113,9 @@ Home Assistant custom integratie voor de [EARN-E energiemonitor](https://earn-e.
 4. Als er geen apparaat wordt gevonden (bijv. de meter staat op een ander subnet), wordt gevraagd om het IP-adres handmatig in te voeren.
 
 Sensoren worden gevuld zodra de eerste datapakketten binnenkomen.
+
+### Verwijderen
+
+1. Ga naar **Instellingen → Apparaten & Services**
+2. Klik op de **EARN-E P1 Meter** integratie
+3. Klik op het drie-puntjes menu (⋮) en selecteer **Verwijderen**

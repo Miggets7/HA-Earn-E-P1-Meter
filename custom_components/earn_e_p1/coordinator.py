@@ -61,7 +61,9 @@ class EarnEP1UDPProtocol(asyncio.DatagramProtocol):
 class EarnEP1Coordinator(DataUpdateCoordinator[dict[str, Any]]):
     """Coordinator for the EARN-E P1 Meter."""
 
-    def __init__(self, hass: HomeAssistant, host: str) -> None:
+    def __init__(
+        self, hass: HomeAssistant, host: str, serial: str | None = None
+    ) -> None:
         """Initialize the coordinator."""
         super().__init__(
             hass,
@@ -70,7 +72,7 @@ class EarnEP1Coordinator(DataUpdateCoordinator[dict[str, Any]]):
         )
         self.host = host
         self.data = {}
-        self.serial: str | None = None
+        self.serial: str | None = serial
         self.model: str | None = None
         self.sw_version: str | None = None
         self._transport: asyncio.DatagramTransport | None = None
