@@ -10,6 +10,7 @@ Home Assistant custom integration for the [EARN-E energy monitor](https://earn-e
 
 ### Features
 
+- Automatic device discovery — no manual IP entry needed
 - Real-time power and voltage/current updates (~1s)
 - Energy and gas meter totals from full telegrams (~60s)
 - WiFi signal strength monitoring
@@ -49,9 +50,10 @@ Home Assistant custom integration for the [EARN-E energy monitor](https://earn-e
 
 1. Go to **Settings → Devices & Services → Add Integration**
 2. Search for "EARN-E P1 Meter"
-3. Enter the IP address of your EARN-E energy monitor
+3. The integration will automatically listen for UDP broadcasts on port 16121 for ~10 seconds. If your EARN-E is found, you'll see a confirmation screen with its IP address — just confirm to finish setup.
+4. If no device is discovered (e.g. the meter is on a different subnet), you'll be asked to enter the IP address manually.
 
-The integration listens for UDP broadcasts on port 16121. Sensors will populate once the first packets arrive.
+Sensors will populate once the first data packets arrive.
 
 ---
 
@@ -61,6 +63,7 @@ Home Assistant custom integratie voor de [EARN-E energiemonitor](https://earn-e.
 
 ### Kenmerken
 
+- Automatische apparaatdetectie — geen handmatige IP-invoer nodig
 - Realtime vermogen- en spanning/stroomupdates (~1s)
 - Energie- en gasmetertellingen uit volledige telegrammen (~60s)
 - WiFi-signaalsterkte monitoring
@@ -100,6 +103,7 @@ Home Assistant custom integratie voor de [EARN-E energiemonitor](https://earn-e.
 
 1. Ga naar **Instellingen → Apparaten & Services → Integratie toevoegen**
 2. Zoek naar "EARN-E P1 Meter"
-3. Voer het IP-adres van je EARN-E energiemonitor in
+3. De integratie luistert automatisch ~10 seconden naar UDP-uitzendingen op poort 16121. Als je EARN-E wordt gevonden, verschijnt een bevestigingsscherm met het IP-adres — bevestig om de installatie af te ronden.
+4. Als er geen apparaat wordt gevonden (bijv. de meter staat op een ander subnet), wordt gevraagd om het IP-adres handmatig in te voeren.
 
-De integratie luistert naar UDP-uitzendingen op poort 16121. Sensoren worden gevuld zodra de eerste pakketten binnenkomen.
+Sensoren worden gevuld zodra de eerste datapakketten binnenkomen.
