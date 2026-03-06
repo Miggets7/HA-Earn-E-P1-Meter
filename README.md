@@ -1,5 +1,16 @@
 # EARN-E P1 Meter
 
+[![HACS][hacs-badge]][hacs-url]
+[![GitHub Release][release-badge]][release-url]
+[![License][license-badge]][license-url]
+
+[hacs-badge]: https://img.shields.io/badge/HACS-Default-41BDF5.svg
+[hacs-url]: https://github.com/hacs/integration
+[release-badge]: https://img.shields.io/github/v/release/Miggets7/HA-Earn-E-P1-Meter
+[release-url]: https://github.com/Miggets7/HA-Earn-E-P1-Meter/releases
+[license-badge]: https://img.shields.io/github/license/Miggets7/HA-Earn-E-P1-Meter
+[license-url]: https://github.com/Miggets7/HA-Earn-E-P1-Meter/blob/main/LICENSE
+
 🇬🇧 [English](#english) | 🇳🇱 [Nederlands](#nederlands)
 
 ---
@@ -36,10 +47,11 @@ Home Assistant custom integration for the [EARN-E energy monitor](https://earn-e
 
 #### HACS
 
-1. In HACS, go to **Integrations → ⋮ → Custom repositories**
-2. Add this repository URL with category **Integration**
-3. Search for "EARN-E P1 Meter" and click **Download**
-4. Restart Home Assistant
+1. Open HACS in Home Assistant
+2. Search for "EARN-E P1 Meter" and click **Download**
+3. Restart Home Assistant
+
+> If the integration does not appear in the search results yet, go to **Integrations → ⋮ → Custom repositories**, add `https://github.com/Miggets7/HA-Earn-E-P1-Meter` with category **Integration**, and try again.
 
 #### Manual
 
@@ -95,10 +107,11 @@ Home Assistant custom integratie voor de [EARN-E energiemonitor](https://earn-e.
 
 #### HACS
 
-1. Ga in HACS naar **Integraties → ⋮ → Aangepaste repositories**
-2. Voeg de URL van deze repository toe met categorie **Integratie**
-3. Zoek naar "EARN-E P1 Meter" en klik op **Downloaden**
-4. Herstart Home Assistant
+1. Open HACS in Home Assistant
+2. Zoek naar "EARN-E P1 Meter" en klik op **Downloaden**
+3. Herstart Home Assistant
+
+> Als de integratie nog niet in de zoekresultaten verschijnt, ga naar **Integraties → ⋮ → Aangepaste repositories**, voeg `https://github.com/Miggets7/HA-Earn-E-P1-Meter` toe met categorie **Integratie**, en probeer opnieuw.
 
 #### Handmatig
 
