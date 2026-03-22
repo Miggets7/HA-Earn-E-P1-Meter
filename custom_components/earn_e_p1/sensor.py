@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any
-
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,
@@ -20,7 +18,8 @@ from homeassistant.const import (
     UnitOfVolume,
 )
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
+from homeassistant.helpers.typing import StateType
 
 from . import EarnEP1ConfigEntry
 from .coordinator import EarnEP1Coordinator
@@ -112,7 +111,7 @@ SENSOR_DESCRIPTIONS: tuple[EarnEP1SensorEntityDescription, ...] = (
 async def async_setup_entry(
     hass: HomeAssistant,
     entry: EarnEP1ConfigEntry,
-    async_add_entities: AddEntitiesCallback,
+    async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
     """Set up EARN-E P1 sensor entities."""
     coordinator = entry.runtime_data
@@ -147,7 +146,7 @@ class EarnEP1Sensor(EarnEP1Entity, SensorEntity):
         return self._json_key in self.coordinator.data
 
     @property
-    def native_value(self) -> Any:
+    def native_value(self) -> StateType:
         """Return the sensor value."""
         if not self.coordinator.data:
             return None
