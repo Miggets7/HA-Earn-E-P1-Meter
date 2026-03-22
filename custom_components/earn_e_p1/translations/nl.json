@@ -2,27 +2,27 @@
   "config": {
     "step": {
       "user": {
-        "title": "Verbind met EARN-E P1 Meter",
+        "title": "Verbind met EARN-E P1 meter",
         "description": "Er is geen apparaat gevonden. Voer het IP-adres van je EARN-E energiemonitor handmatig in.",
         "data": {
           "host": "IP-adres"
         },
         "data_description": {
-          "host": "Het lokale IP-adres van je EARN-E P1 Meter (bijv. 192.168.1.100)."
+          "host": "Het lokale IP-adres van je EARN-E P1 meter (bijv. 192.168.1.100)."
         }
       },
       "discovery_confirm": {
-        "title": "EARN-E P1 Meter gevonden",
-        "description": "Er is een EARN-E P1 Meter gevonden op **{host}**."
+        "title": "EARN-E P1 meter gevonden",
+        "description": "Er is een EARN-E P1 meter gevonden op **{host}**."
       },
       "reconfigure": {
-        "title": "EARN-E P1 Meter herconfigureren",
+        "title": "EARN-E P1 meter herconfigureren",
         "description": "Werk het IP-adres van je EARN-E energiemonitor bij.",
         "data": {
           "host": "IP-adres"
         },
         "data_description": {
-          "host": "Het nieuwe lokale IP-adres van je EARN-E P1 Meter."
+          "host": "Het nieuwe lokale IP-adres van je EARN-E P1 meter."
         }
       }
     },
@@ -31,8 +31,7 @@
       "unknown": "Er is een onverwachte fout opgetreden."
     },
     "abort": {
-      "already_configured": "Deze EARN-E P1 Meter is al geconfigureerd.",
-      "single_instance_allowed": "Al geconfigureerd. Er is slechts één configuratie mogelijk.",
+      "already_configured": "Deze EARN-E P1 meter is al geconfigureerd.",
       "reconfigure_successful": "Herconfiguratie geslaagd."
     }
   },
@@ -66,7 +65,7 @@
         "name": "Gas geleverd"
       },
       "wifi_rssi": {
-        "name": "WiFi RSSI"
+        "name": "Wi-Fi RSSI"
       }
     }
   }
