@@ -11,7 +11,7 @@ Home Assistant custom integration for the EARN-E energy monitor. The device read
 - **Platform:** Sensor only
 - **Distributed via:** HACS (Home Assistant Community Store)
 - **Minimum HA version:** 2024.1.0
-- **No external pip dependencies**
+- **PyPI dependency:** `earn-e-p1` (device communication library, [source](https://github.com/Miggets7/earn-e-p1))
 
 ## Development
 
@@ -26,18 +26,18 @@ pytest
 pytest --cov=custom_components.earn_e_p1 --cov-report=term-missing
 ```
 
-The integration is pure Python with no compilation step. For manual testing, install into a Home Assistant development environment by copying `custom_components/earn_e_p1/` into the HA config directory.
+The integration is pure Python with no compilation step. Uses a venv — run tests via `.venv/bin/pytest`. For manual testing, copy `custom_components/earn_e_p1/` into the HA config directory.
 
 ## Architecture
 
 ```
 custom_components/earn_e_p1/
-├── __init__.py       # Entry point: async_setup_entry / async_unload_entry
-├── config_flow.py    # Config flow with manual IP entry + UDP auto-discovery + validation
-├── const.py          # Domain, port, P1SensorFieldDescriptor dataclass, SENSOR_FIELDS tuple
-├── coordinator.py    # DataUpdateCoordinator + asyncio DatagramProtocol (UDP listener)
+├── __init__.py       # Entry point: manages shared EarnEP1Listener lifecycle
+├── config_flow.py    # Config flow with discovery, validation (waits for serial), reconfigure
+├── const.py          # DOMAIN only
+├── coordinator.py    # DataUpdateCoordinator, registers with shared listener
 ├── entity.py         # Base entity class with device_info (common-modules pattern)
-├── sensor.py         # SensorEntity subclass, creates entities from SENSOR_FIELDS descriptors
+├── sensor.py         # SensorEntity subclass + EarnEP1SensorEntityDescription definitions
 ├── manifest.json     # Integration metadata
 ├── strings.json      # UI strings (config flow steps, entity names)
 └── translations/
@@ -52,14 +52,19 @@ tests/
 └── test_sensor.py      # Sensor entity tests
 ```
 
-**Data flow:** Device UDP broadcast → `EarnEP1UDPProtocol` (port 16121) → `EarnEP1Coordinator` merges JSON payload → `EarnEP1Sensor` entities read from coordinator data.
+**Data flow:** Device UDP broadcast → shared `EarnEP1Listener` (from `earn-e-p1` library) → callback updates `EarnEP1Coordinator` → `EarnEP1Sensor` entities read from coordinator data.
 
 **Key patterns:**
-- All sensors are defined declaratively via `SENSOR_FIELDS` tuple of `P1SensorFieldDescriptor` dataclasses in `const.py`. To add a new sensor, add a descriptor there.
-- The coordinator extends HA's `DataUpdateCoordinator` but does not poll — it receives pushes from the UDP protocol handler and calls `async_set_updated_data()`.
-- Config flow supports three paths: manual IP entry, UDP broadcast auto-discovery (10s listen), and reconfiguration.
-- Device identity (serial, model, sw_version) is extracted from the first UDP payload and stored on the coordinator.
+- All sensors defined via `SENSOR_DESCRIPTIONS` tuple of `EarnEP1SensorEntityDescription` in `sensor.py`. To add a sensor, add a description there.
+- A shared `EarnEP1Listener` (stored in `hass.data[DOMAIN]`) is created on first entry setup and stopped when the last entry unloads. Multiple entries share one UDP socket.
+- The coordinator registers/unregisters with the shared listener. It does not manage sockets directly.
+- Config flow requires serial for entry creation — validation waits for a full telegram containing the serial.
+- Config flow uses shared listener's instance methods when one is running, standalone `discover()`/`validate()` otherwise.
 - Sensor availability depends on the sensor's JSON key being present in the coordinator's merged data dict.
+
+## Related Repositories
+
+- **[earn-e-p1](https://github.com/Miggets7/earn-e-p1)** — PyPI library handling UDP communication. Managed with `uv`. Located at `~/Developer/OpenSource/earn-e-p1/`.
 
 ## Conventions
 
