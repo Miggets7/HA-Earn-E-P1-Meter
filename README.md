@@ -1,11 +1,31 @@
 # EARN-E P1 Meter
 
-[![HACS][hacs-badge]][hacs-url]
+> ## ⚠️ Deprecated — now in Home Assistant core
+>
+> This integration has been merged into Home Assistant core and ships with
+> Home Assistant out of the box. This custom component is no longer maintained
+> here — please use the built-in integration instead (see [Installation](#installation-home-assistant-core) below).
+>
+> - Documentation: [home-assistant.io/integrations/earn_e_p1](https://www.home-assistant.io/integrations/earn_e_p1)
+> - Upstream: [home-assistant/core](https://github.com/home-assistant/core)
+> - Author's fork: [Miggets7/core](https://github.com/Miggets7/core)
+>
+> ---
+>
+> ## ⚠️ Verouderd — nu in Home Assistant core
+>
+> Deze integratie is samengevoegd in Home Assistant core en wordt standaard met
+> Home Assistant meegeleverd. Deze custom component wordt hier niet langer
+> onderhouden — gebruik in plaats daarvan de ingebouwde integratie (zie
+> [Installatie](#installatie-home-assistant-core) hieronder).
+>
+> - Documentatie: [home-assistant.io/integrations/earn_e_p1](https://www.home-assistant.io/integrations/earn_e_p1)
+> - Upstream: [home-assistant/core](https://github.com/home-assistant/core)
+> - Fork van de auteur: [Miggets7/core](https://github.com/Miggets7/core)
+
 [![GitHub Release][release-badge]][release-url]
 [![License][license-badge]][license-url]
 
-[hacs-badge]: https://img.shields.io/badge/HACS-Default-41BDF5.svg
-[hacs-url]: https://github.com/hacs/integration
 [release-badge]: https://img.shields.io/github/v/release/Miggets7/HA-Earn-E-P1-Meter
 [release-url]: https://github.com/Miggets7/HA-Earn-E-P1-Meter/releases
 [license-badge]: https://img.shields.io/github/license/Miggets7/HA-Earn-E-P1-Meter
@@ -17,7 +37,7 @@
 
 ## English
 
-Home Assistant custom integration for the [EARN-E energy monitor](https://earn-e.com/product/energiemonitor/). The EARN-E reads your smart meter's P1 port and broadcasts real-time energy data via UDP on the local network. This integration listens for those broadcasts and exposes them as sensor entities in Home Assistant.
+Home Assistant integration for the [EARN-E energy monitor](https://earn-e.com/product/energiemonitor/). The EARN-E reads your smart meter's P1 port and broadcasts real-time energy data via UDP on the local network. This integration listens for those broadcasts and exposes them as sensor entities in Home Assistant.
 
 ### Features
 
@@ -43,20 +63,18 @@ Home Assistant custom integration for the [EARN-E energy monitor](https://earn-e
 | Gas Delivered | m³ | ~60s |
 | WiFi RSSI | dBm | ~60s |
 
-### Installation
+### Installation (Home Assistant core)
 
-#### HACS
+The integration is included in Home Assistant out of the box — no HACS, no
+`custom_components/` copy needed. See the official docs:
+[home-assistant.io/integrations/earn_e_p1](https://www.home-assistant.io/integrations/earn_e_p1).
 
-1. Open HACS in Home Assistant
-2. Search for "EARN-E P1 Meter" and click **Download**
-3. Restart Home Assistant
-
-> If the integration does not appear in the search results yet, go to **Integrations → ⋮ → Custom repositories**, add `https://github.com/Miggets7/HA-Earn-E-P1-Meter` with category **Integration**, and try again.
-
-#### Manual
-
-1. Copy `custom_components/earn_e_p1/` to your Home Assistant `config/custom_components/` directory
-2. Restart Home Assistant
+1. Make sure Home Assistant is updated to a version that includes the
+   integration.
+2. Go to **Settings → Devices & Services → Add Integration**.
+3. Search for **EARN-E** and select the integration.
+4. Follow the setup prompts (automatic discovery on the local network; fallback
+   to manual IP entry if needed).
 
 ### Setup
 
@@ -73,11 +91,31 @@ Sensors will populate once the first data packets arrive.
 2. Click on the **EARN-E P1 Meter** integration
 3. Click the three-dot menu (⋮) and select **Delete**
 
+<details>
+<summary>Legacy install (pre-core, custom component)</summary>
+
+For users on a Home Assistant version that does not yet include the integration,
+the custom component in this repo can still be installed manually:
+
+#### HACS
+
+1. Open HACS in Home Assistant
+2. Go to **Integrations → ⋮ → Custom repositories**, add `https://github.com/Miggets7/HA-Earn-E-P1-Meter` with category **Integration**
+3. Search for "EARN-E P1 Meter" and click **Download**
+4. Restart Home Assistant
+
+#### Manual
+
+1. Copy `custom_components/earn_e_p1/` to your Home Assistant `config/custom_components/` directory
+2. Restart Home Assistant
+
+</details>
+
 ---
 
 ## Nederlands
 
-Home Assistant custom integratie voor de [EARN-E energiemonitor](https://earn-e.com/product/energiemonitor/). De EARN-E leest de P1-poort van je slimme meter en verstuurt realtime energiedata via UDP over het lokale netwerk. Deze integratie luistert naar die uitzendingen en maakt ze beschikbaar als sensorentiteiten in Home Assistant.
+Home Assistant integratie voor de [EARN-E energiemonitor](https://earn-e.com/product/energiemonitor/). De EARN-E leest de P1-poort van je slimme meter en verstuurt realtime energiedata via UDP over het lokale netwerk. Deze integratie luistert naar die uitzendingen en maakt ze beschikbaar als sensorentiteiten in Home Assistant.
 
 ### Kenmerken
 
@@ -103,20 +141,17 @@ Home Assistant custom integratie voor de [EARN-E energiemonitor](https://earn-e.
 | Gas geleverd | m³ | ~60s |
 | WiFi RSSI | dBm | ~60s |
 
-### Installatie
+### Installatie (Home Assistant core)
 
-#### HACS
+De integratie zit standaard in Home Assistant — geen HACS of `custom_components/`
+kopie nodig. Zie de officiële documentatie:
+[home-assistant.io/integrations/earn_e_p1](https://www.home-assistant.io/integrations/earn_e_p1).
 
-1. Open HACS in Home Assistant
-2. Zoek naar "EARN-E P1 Meter" en klik op **Downloaden**
-3. Herstart Home Assistant
-
-> Als de integratie nog niet in de zoekresultaten verschijnt, ga naar **Integraties → ⋮ → Aangepaste repositories**, voeg `https://github.com/Miggets7/HA-Earn-E-P1-Meter` toe met categorie **Integratie**, en probeer opnieuw.
-
-#### Handmatig
-
-1. Kopieer `custom_components/earn_e_p1/` naar de `config/custom_components/` map van je Home Assistant
-2. Herstart Home Assistant
+1. Zorg dat Home Assistant is bijgewerkt naar een versie die de integratie bevat.
+2. Ga naar **Instellingen → Apparaten & Services → Integratie toevoegen**.
+3. Zoek naar **EARN-E** en selecteer de integratie.
+4. Volg de installatiestappen (automatische detectie op het lokale netwerk;
+   handmatige IP-invoer als terugval).
 
 ### Instellen
 
@@ -132,3 +167,23 @@ Sensoren worden gevuld zodra de eerste datapakketten binnenkomen.
 1. Ga naar **Instellingen → Apparaten & Services**
 2. Klik op de **EARN-E P1 Meter** integratie
 3. Klik op het drie-puntjes menu (⋮) en selecteer **Verwijderen**
+
+<details>
+<summary>Verouderde installatie (pre-core, custom component)</summary>
+
+Voor gebruikers met een Home Assistant versie die de integratie nog niet bevat,
+kan de custom component uit deze repo nog handmatig worden geïnstalleerd:
+
+#### HACS
+
+1. Open HACS in Home Assistant
+2. Ga naar **Integraties → ⋮ → Aangepaste repositories**, voeg `https://github.com/Miggets7/HA-Earn-E-P1-Meter` toe met categorie **Integratie**
+3. Zoek naar "EARN-E P1 Meter" en klik op **Downloaden**
+4. Herstart Home Assistant
+
+#### Handmatig
+
+1. Kopieer `custom_components/earn_e_p1/` naar de `config/custom_components/` map van je Home Assistant
+2. Herstart Home Assistant
+
+</details>
